@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.get("/cookie", (req, res) => {
   const cookieVal = req.params["cookie"] ? req.params["cookie"] : "foo";
-  res.cookie("ThisIsMyCookie", randomNumber, {
+  res.cookie("ThisIsMyCookie", cookieVal, {
     maxAge: 900000,
     httpOnly: true,
   });
