@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SessionStorage</title>
 </head>
-<body>
-  SessionStorage
+
+<body style="display: flex; justify-content: center;">
+  <div>
+    <h4>Session Storage</h4>
+    <input placeholder="key" type="text" id="key" />
+    <br />
+    <br />
+    <input placeholder="value" type="text" id="value" />
+    <br />
+    <br />
+    <button onclick="set()">set</button>
+    <br />
+    <a href=".">Link</a>
+  </div>
 </body>
+
 </html>
+
+<script>
+  function set() {
+    const key = document.getElementById("key").value
+    const value = document.getElementById('value').value
+
+    window.sessionStorage.setItem(key, value);
+  }
+</script>

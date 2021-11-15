@@ -1,32 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cookies</title>
 </head>
-<body>
-  <section>
-    Cookies:
-    <div id="cookies">
-      <ul id="list"></ul>
-    </div>
-  </section>
-  <input type="text" id="cookie-input" />
-  <button onclick="fetchCookie()">fetch with Cookies</button>
+
+<body style="display: flex; justify-content: center;">
+  <div>
+    <h4>Cookies</h4>
+    <input placeholder="Cookie name" type="text" id="name" />
+    <br />
+    <br />
+    <input placeholder="Expires" type="text" id="expires" />
+    <br />
+    <br />
+    <input placeholder="Secure" type="checkbox" name="secure" id="secure" />
+    <label for="secure">Secure</label>
+    <input placeholder="HttpOnly" type="checkbox" name="http-only" id="http-only" />
+    <label for="http-only">HttpOnly</label>
+    <br />
+    <br />
+    <input placeholder="Domain" type="text" id="domain" /><br />
+    <input placeholder="Path" type="text" id="path" /><br />
+    <br />
+    <br />
+    <label for="same-site">SameSite</label><br />
+    <select id="same-site">
+      <option disabled selected value> -- select an option -- </option>
+      <option value="Strict">Strict</option>
+      <option value="Strict">Strict</option>
+      <option value="Lax">Lax</option>
+      <option value="None">None</option>
+    </select>
+    <br />
+    <br />
+    <button onclick="fetchCookie()">fetch</button>
+  </div>
 </body>
+
 </html>
 
 <script>
-  const baseUrl = "https://lab-browser-storage.herokuapp.com/"
+  // const baseUrl = "https://lab-browser-storage.herokuapp.com/"
+  const baseUrl = "http://127.0.0.1:3000/"
   function fetchCookie() {
-    const cookieInput = document.getElementById("cookie-input").textContent
-    console.log(cookieInput);
-    fetch(`${baseUrl}cookie?cookie=${cookieInput}`).then((_value) => {
-      const cookieDiv = document.getElementById("cookies")
-      const cookieList = document.getAnimations("list")
-      cookieList.remove()
+    const cookieName = document.getElementById("name").value
+    const expire = document.getElementById('expires').value
+    const secure = document.getElementById('secure').checked
+    const httpOnly = document.getElementById('http-only').checked
+    const domain = document.getElementById('domain').value
+    const path = document.getElementById('path').value
+    const sameSite = document.getElementById('same-site').value
+
+    fetch(`${baseUrl}cookie?cookie=${cookieName}&expire=${expire}&secure=${secure}&httpOnly=${httpOnly}&domain=${domain}&path=${path}&sameSite=${sameSite}`, {
+      credentials: 'include',
     })
   }
 </script>

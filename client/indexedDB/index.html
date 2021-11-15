@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IndexedDB</title>
 </head>
-<body>
-  IndexedDB
+
+<body style="display: flex; justify-content: center;">
+  <div>
+    <h4>IndexedDB</h4>
+    <label for="input">Select a file</label><br />
+    <input id="input" type="file" />
+    <br />
+    <br />
+
+    <button onclick="initDB()">initDB</button>
+    <button onclick="set()">set</button>
+
+  </div>
 </body>
+
 </html>
+
+<script>
+  let db;
+
+  function initDB() {
+    const IDBRequest = window.indexedDB.open("MyDatabase");
+
+    // Get the database interface
+    IDBRequest.onsuccess = function (event) {
+      db = IDBRequest.result;
+    }
+
+    // Requested to upgrade the store (database created with higher version)
+    IDBRequest.onupgradeneeded = function (event) {
+      alert("upgrade")
+      var db = event.target.result;
+      var objectStore = db.createObjectStore('file', { keyPath: 'name' });
+    }
+  }
+
+  function set() {
+    const file = document.getElementById("input").files[0];
+    console.log(file)
+    const transaction = db.transaction(["file"], "readwrite").objectStore("file").add(file);
+  }
+</script>
