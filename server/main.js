@@ -20,7 +20,7 @@ app.get("/cookie", (req, res) => {
     maxAge: 900000,
     httpOnly: true,
   });
-  res.status(200).send();
+  res.status(200).send("OK");
 });
 
 app.listen(port, () => {
