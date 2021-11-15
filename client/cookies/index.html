@@ -56,7 +56,7 @@
     const sameSite = document.getElementById('same-site').value
 
     fetch(`${baseUrl}cookie?cookie=${cookieName}&expire=${expire}&secure=${secure}&httpOnly=${httpOnly}&domain=${domain}&path=${path}&sameSite=${sameSite}`, {
-      credentials: 'include',
+      credentials: "same-origin",
     })
   }
 </script>
