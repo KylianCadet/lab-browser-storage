@@ -4,7 +4,9 @@ const cors = require("cors");
 
 const app = express();
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 const port = process.env.PORT ? process.env.PORT : 3000;
 
